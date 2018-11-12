@@ -1,0 +1,36 @@
+---
+##  Playbook to setup 3 tier application
+
+- name: Initial Setup to enable the repos in all servers
+  hosts: all
+  gather_facts: false
+  become: true
+  roles:
+    - role: app_prerequisites
+
+
+
+- name: Install and setup load-balancer haproxy in frontend servers
+  hosts: frontends
+  gather_facts: false
+  become: true
+  roles:
+    - role: load_balancer
+
+- name: Install and setup load-balancer haproxy in frontend servers
+  hosts: apps
+  gather_facts: false
+  become: true
+  roles:
+    - role: web_server
+
+
+
+- name: Install and setup postgres database
+  hosts: appdbs
+  gather_facts: false
+  become: true
+  roles:
+    - role: db_postgres
+...
+

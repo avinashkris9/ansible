@@ -1,0 +1,12 @@
+---
+## tasks file for app_prerequisites
+# Common Commands
+
+- name: Enable  yum repos
+  copy:
+    src: "{{repo_file_name}}"
+    dest: "/etc/yum.repos.d/{{repo_file_name}}"
+    mode: 644
+...
+
+
