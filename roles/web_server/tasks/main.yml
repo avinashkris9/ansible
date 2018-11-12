@@ -6,10 +6,12 @@
     name: "{{ package_name }}"
     state: latest
 
+
 - name: enable  tomcat
   service:
     name: "{{ package_name }}"
     enabled: yes
+  notify: restart apache
 
 - name:  create tomcat default web directory
   file:
@@ -22,12 +24,11 @@
     src: index.html.j2
     dest: "{{ tomcat_base_dir }}/index.html"
     mode: 0644
-#  notify:
-#   - restart apache
+  notify: restart apache
 
 #handlers:
-- name: restart apache
-  service:
-    name: "{{ package_name }}"
-    state: restarted
+#- name: restart apache
+#  service:
+#    name: "{{ package_name }}"
+#    state: restarted
 
