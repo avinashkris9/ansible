@@ -1,7 +1,8 @@
 ---
 # defaults file for win_service_config
-#ad_domain_name: ad1.${guid}.example.opentlc.com
-ad_domain_name: ad1.5d07.example.opentlc.com
+ad_domain_name: ad1.{{guid}}.example.opentlc.com
+
+#ad_domain_name: ad1.5d07.example.opentlc.com
 
 ad_safe_mode_password: "{{ansible_password}}"
 
