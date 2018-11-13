@@ -1,0 +1,30 @@
+---
+##  Playbook to setup windows host
+
+- name: Install service
+  win_feature:
+    name: AD-Domain-Services
+    state: present
+
+- name: Setup Active Dir
+  win_domain:
+    dns_domain_name: "{{ad_domain_name}}"
+    safe_mode_password: "{{ad_safe_mode_password}}"
+  register: win_ad_status
+
+
+- name: reboot if installing feature requires it
+  win_reboot:
+  when: win_ad_status.reboot_required
+ 
+- name: List domains
+  win_shell: "nltest /dclist:{{ ad_domain_name }}"
+  register: domain_list
+- debug:
+   msg: "{{domain_list.stdout_lines}}"
+
+
+...
+
+
+

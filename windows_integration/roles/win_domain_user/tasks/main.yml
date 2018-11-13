@@ -1,0 +1,25 @@
+---
+# tasks file for win_domain_user
+
+- debug:
+   msg: "{{item.group_scope}}"
+   verbosity: 2
+  with_list: "{{user_info}}"
+
+
+- name: add new groups
+  win_domain_group:
+    name: "{{item.group_name}}"
+    scope: "{{item.group_scope}}"
+  with_list: "{{user_info}}"
+
+- name: Add users to AD
+  win_domain_user:
+   name: "{{item.name}}"
+   firstname: "{{item.firstname}}"
+   surname: "{{item.surname}}"
+   password: "{{item.password}}"
+   email: "{{item.name}}@{{domain_name}}"
+   state: present
+   groups: "{{item.group_name}}"
+  with_list: "{{user_info}}"

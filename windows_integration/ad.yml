@@ -1,0 +1,8 @@
+---
+##  Playbook to setup 3 tier application
+
+- name: Windows host AD configuration
+  hosts: windows
+
+  roles:
+    - role: win_ad_install

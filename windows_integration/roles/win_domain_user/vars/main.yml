@@ -1,0 +1,4 @@
+---
+# vars file for win_domain_user
+
+domain_name: ad1.{{guid}}.example.opentlc.com

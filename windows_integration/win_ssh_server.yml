@@ -1,0 +1,9 @@
+---
+- name: Install OpenSSH
+  hosts: windows
+  vars_files: ssh_var.yml
+  roles:
+       - role: win_service_config
+
+...
+

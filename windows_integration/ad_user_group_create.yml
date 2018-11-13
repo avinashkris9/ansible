@@ -1,0 +1,7 @@
+---
+## Extra var guid required to run playbook. 
+- name: Playbook to add users to Active Directory
+  hosts: windows
+  vars_files: user_var.yml
+  roles:
+   - role: win_domain_user
