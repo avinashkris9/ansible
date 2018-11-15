@@ -1,11 +1,13 @@
 ---
 ##  Playbook to setup 3 tier application
-
+# Alternate Method to create dynmaic inventory
+#
 - name: Initial Setup to enable the repos in all servers
-  hosts: all
+  hosts: jumpbox 
   gather_facts: false
   become: true
   roles:
+    - role: osp-facts
     - role: app_prerequisites
 
 
